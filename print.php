@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: PasteBoard
-Version: 1.0
+Version: 1.1
 Plugin URI: http://imagets.com
 Description: You can paste all images from your desktop easily. Paste your snapshots all region from photoshop. No need to upload images, just paste to your editor. You can crop images before paste.
 Author: ImageTS
@@ -51,11 +51,11 @@ function pasteboard_request(){
 							<img id="screenshot_paste" src="">
 						</div>
 
-						<div id="footer-menu">
+						<form action="javascript:appendText()" method="post" id="footer-menu">
 							<input id="pasteTitle" placeholder="Enter title for image">
 							<button id="appendButton" class="btn-primary" onclick="appendText();">Add to text</button>
 							<button class="btn-danger" onclick="cancelPaste();">Cancel</button>
-						</div>
+						</form>
 					</div>
 
 					<div id="pasteboard_settings" class="pasteboard_tab">

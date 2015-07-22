@@ -1,17 +1,26 @@
 var coords = [0,0,0,0];
 
 function onPasteProcess(){
-	jQuery("#screenshot_paste").attr("src", paste);
-	jQuery('#screenshot_paste').Jcrop({onSelect: updateCoords});
+	try {
+		jQuery("#screenshot_paste").attr("src", paste);
 
-	jQuery("#tabs li").each(function(){
-		jQuery(this).click(function(){
-			pasteboard_Tab(jQuery(this).attr("tab"));
+		try {
+	    	jQuery('#screenshot_paste').Jcrop({onSelect: updateCoords});
+		}catch(err) {
+			
+		}
+
+		jQuery("#tabs li").each(function(){
+			jQuery(this).click(function(){
+				pasteboard_Tab(jQuery(this).attr("tab"));
+			});
 		});
-	});
 
-	if(parseInt(readCookie('pasteboard_quality'))>0){
-		jQuery("#pasteboard_quality").val(readCookie('pasteboard_quality'));
+		if(parseInt(readCookie('pasteboard_quality'))>0){
+			jQuery("#pasteboard_quality").val(readCookie('pasteboard_quality'));
+		}
+	}catch(rootError) {
+		alert(rootError);
 	}
 }
 
@@ -55,12 +64,16 @@ function addImages(data){
 }
 
 function appendText(){
-	var imageData = getCrop(coords[0],coords[1],coords[2],coords[3]);
-	jQuery("button").prop('disabled', true);
-	jQuery("#appendButton").text("Please Wait");
-	jQuery.post( "../?pasteboard=paste", { post_id: post_id, title : jQuery("#pasteTitle").val(), x:coords[0],y:coords[1],w:coords[2],h:coords[3], imageData: imageData }, function(data){
-		addImages(data);
-	});
+	try {
+		var imageData = getCrop(coords[0],coords[1],coords[2],coords[3]);
+		jQuery("button").prop('disabled', true);
+		jQuery("#appendButton").text("Please Wait");
+		jQuery.post( "../?pasteboard=paste", { post_id: post_id, title : jQuery("#pasteTitle").val(), x:coords[0],y:coords[1],w:coords[2],h:coords[3], imageData: imageData }, function(data){
+			addImages(data);
+		});
+	}catch(rootError) {
+		alert(rootError);
+	}
 }
 
 function getCrop(x,y,w,h){
