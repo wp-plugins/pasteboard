@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Pasteboard ===
 Tags: screenshot, copy paste, crop images
 Requires at least: 4.0
 Tested up to: 4.1.1
@@ -29,5 +29,6 @@ Find out more at http://www.imagets.com
 
 == Changelog ==
 
+= 1.2 [22/07/15] =
 = 1.0 [11/06/15] =
 * Initial version
